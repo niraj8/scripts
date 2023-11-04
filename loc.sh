@@ -25,7 +25,7 @@ count_for_repo() {
     org=$(basename "$(dirname $dir)")
     current_branch=$(git -C $dir branch --show-current)
     if [ "$current_branch" != "master" ] && [ "$current_branch" != "main" ]; then
-        echo "not main/master $org/$repo : $current_branch"
+        echo "branch not main/master $org/$repo : $current_branch" >&2
     fi
     count=$(git_log_additions $dir $author)
     total_count=$((total_count + count))
